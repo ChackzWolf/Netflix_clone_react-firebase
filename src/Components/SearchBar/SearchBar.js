@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { IoSearch } from "react-icons/io5";
+import { searchContext } from '../..';
 
 
 const SearchBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { searchValue, setSearchValue } = useContext(searchContext);
 
   const handleSearchIconClick = () => {
     setIsExpanded(!isExpanded);
@@ -21,7 +23,9 @@ const SearchBar = () => {
           }`}
         >
           <div>
-          <input
+          <input onChange={(e)=>{
+              setSearchValue(e.target.value)
+          }} value={searchValue}
             type="text"
             placeholder="Titles, people, genres"
             className={`bg-transparent h-9 text-white px-4  focus:outline-none focus:ring-1 focus:ring-[#1d1d1d] focus:border-gray-300 transition-all duration-300 ${

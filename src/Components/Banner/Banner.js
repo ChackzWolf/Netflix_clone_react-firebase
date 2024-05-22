@@ -1,16 +1,16 @@
  import React, { useState,useEffect} from "react";
- import { API_KEY,imageUrl } from "../../constants/constants";
+ import {imageUrl } from "../../constants/constants";
  import { CiCircleInfo } from "react-icons/ci";
  import { FaPlay } from "react-icons/fa";
  import axios from "../../axios";
 import RowPosts from "../RowPosts/RowPosts";
-import { originals } from "../../constants/url";
+import { originals, trending } from "../../constants/url";
 
  export const Banner = ()=>{
     const [movie,setMovie] = useState()
 
     useEffect(()=>{
-        axios.get(`/trending/movie/week?api_key=${API_KEY}&language=en-US`).then((response)=>{
+        axios.get(trending).then((response)=>{
             setMovie(response.data.results[1])
         })
     },[])
